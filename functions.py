@@ -1,9 +1,15 @@
 import PyDictionary
 import random
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 def setup():
     # AI STUFF
     import google.generativeai as genai
-    genai.configure()
+    genai.configure(api_key=os.environ['AI_KEY'])
     model = genai.GenerativeModel('gemini-pro')
     # DISCORD SETUP
     import discord

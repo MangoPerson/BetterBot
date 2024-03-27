@@ -1,5 +1,8 @@
-
 import functions
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 client, model = functions.setup()
 
@@ -78,4 +81,4 @@ async def on_message(message):
 
                 await send(f'Invalid user to mock, valid people are:\n{ValidUsers}')
 
-client.run()
+client.run(os.environ['TOKEN'])
