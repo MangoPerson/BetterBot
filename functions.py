@@ -1,23 +1,28 @@
 import PyDictionary
 import random
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+import google.generativeai as genai
+import discord
 
 
 def setup():
     # AI STUFF
-    import google.generativeai as genai
     genai.configure(api_key=os.environ['AI_KEY'])
     model = genai.GenerativeModel('gemini-pro')
+
     # DISCORD SETUP
-    import discord
     intents = discord.Intents.all()
     intents.message_content = True
     client = discord.Client(intents=intents)
 
     return client, model
+
+
+def CheckIfCommandIsValid(message):
+    Regmsg = message.content.lower().split(' ')
+    if len(Regmsg) < 2:
+        return False
+    return True
 
 
 def ReturnDefinition(word):

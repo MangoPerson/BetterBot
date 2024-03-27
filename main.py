@@ -1,6 +1,7 @@
 import functions
 from dotenv import load_dotenv
 import os
+from amogus.handler import handle
 
 load_dotenv()
 
@@ -25,11 +26,6 @@ class DiscordPerson:
     def ReturnStats(self):
         return vars(self)
 
-def CheckIfCommandIsValid(message):
-    Regmsg = message.content.lower().split(' ')
-    if len(Regmsg) < 3:
-        return False
-    return True
 
 @client.event
 async def on_ready():
@@ -44,8 +40,6 @@ async def on_ready():
         globals()[f'{MemberNameTags[i]}'] = DiscordPerson(*MemberNameTags[i].split('@'))
 
 
-
-
 @client.event
 async def on_message(message):
     global MemberNameTags
@@ -56,7 +50,7 @@ async def on_message(message):
     print(f'{message.author.name}\n{message.content}')
     if Regmsg[0] in ['$bb', '$betterbot']:
 
-        if not CheckIfCommandIsValid(message):
+        if not functions.CheckIfCommandIsValid(message):
             await send('Invalid command, please enter a proper command')
             return
         if Regmsg[1] in ['dict', 'dictionary', 'define']:
@@ -80,5 +74,8 @@ async def on_message(message):
                         ValidUsers.append(i.split('@')[0])
 
                 await send(f'Invalid user to mock, valid people are:\n{ValidUsers}')
+        if Regmsg[1] == 'amogus':
+            await handle(client, message)
+
 
 client.run(os.environ['TOKEN'])
