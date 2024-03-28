@@ -61,3 +61,12 @@ def ScrambleLetters(string):
     for i in string:
         ReturnVal += random.choice((i.lower(), i.upper()))
     return ReturnVal
+
+def Help():
+    return ("Available Commands: \nHelp: Shows this \n"
+            "Dict: Defines a word *Also works with define and dictionary* \n"
+            "Say: Copies the message \nMock: Will start to mock a user \n"
+            "AI: Will query an AI and return its response from your prompt\n"
+            "Stats: Will return the stats of a user\n"
+            "Format:\n"
+            "[$bb or $betterbot] [COMMAND] arg1 arg2 agr3 ...")

@@ -41,7 +41,6 @@ async def on_ready():
     for i in range(len(MemberNameTags)):
         globals()[f'{MemberNameTags[i]}'] = DiscordPerson(*MemberNameTags[i].split('@'))
 
-
 # This will run every time a message is sent
 @client.event
 async def on_message(message):
@@ -118,6 +117,10 @@ async def on_message(message):
         # Cant comment this because idk what it does
         if Regmsg[1] == 'amogus':
             await handle(client, message)
+
+        # Does what you'd expect
+        if Regmsg[1] == 'help':
+            await send(functions.Help())
 
 
 client.run(os.environ['TOKEN'])
