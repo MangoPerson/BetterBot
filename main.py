@@ -1,11 +1,14 @@
 import functions
 from dotenv import load_dotenv
 import os
-from amogus.handler import handle
+import amogus.handler as amogus
+import uwu as uwu
 
 load_dotenv()
 
 client, model = functions.setup()
+
+prefixes = ['$bb', '$betterbot']
 
 class DiscordPerson:
     def __init__(self, name, guild):
@@ -65,7 +68,7 @@ async def on_message(message):
         await send(functions.ScrambleLetters(message.content))
 
     # This will only run when the message starts with $bb or $betterbot
-    if Regmsg[0] in ['$bb', '$betterbot']:
+    if Regmsg[0] in prefixes:
 
         # Makes sure that the command has the prefix "$bb", a command "stats, mock, etc" and an argument, like user or word
         if not functions.CheckIfCommandIsValid(message):
@@ -116,7 +119,10 @@ async def on_message(message):
         # MangoPerson PLEASE COMMENT THIS FUNCTION * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
         # Cant comment this because idk what it does
         if Regmsg[1] == 'amogus':
-            await handle(client, message)
+            await amogus.handle(client, message)
+
+        if Regmsg[1] == 'uwuify':
+            await uwu.handle(client, message)
 
         # Does what you'd expect
         if Regmsg[1] == 'help':
