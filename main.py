@@ -1,3 +1,5 @@
+import discord
+
 import functions
 from dotenv import load_dotenv
 import os
@@ -119,7 +121,7 @@ async def on_message(message):
         # MangoPerson PLEASE COMMENT THIS FUNCTION * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
         # Cant comment this because idk what it does
         if Regmsg[1] == 'amogus':
-            await amogus.handle(client, message)
+            await amogus.handle_message(client, message)
 
         if Regmsg[1] == 'uwuify':
             await uwu.handle(client, message)
@@ -128,5 +130,9 @@ async def on_message(message):
         if Regmsg[1] == 'help':
             await send(functions.Help())
 
+
+@client.event
+async def on_voice_state_update(member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
+    await amogus.handle_vc(client, member, before, after)
 
 client.run(os.environ['TOKEN'])
