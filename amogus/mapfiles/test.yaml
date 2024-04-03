@@ -1,0 +1,19 @@
+name: Test
+start: B
+areas:
+  - name: A
+    links:
+      - B
+  - name: B
+    links:
+      - A
+      - C
+      - D
+  - name: C
+    links:
+      - B
+      - D
+  - name: D
+    links:
+      - C
+      - A

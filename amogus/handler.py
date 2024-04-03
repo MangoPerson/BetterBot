@@ -1,8 +1,11 @@
 import discord
 
+from amogus.gamestate import GameState
+
+active_games: list[GameState]
+
 
 async def handle(client: discord.Client, message: discord.Message):
-    embed = discord.Embed(color=0x00ff00, title='Test', description='Among us')
-    await message.channel.send(embed=embed)
+    args = message.content.split(' ')[2:]
 
-    await message.author.send("Hello!")
+    print(args)
